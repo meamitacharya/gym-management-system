@@ -1,0 +1,27 @@
+nav#page-top.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow.containe
+    .sidebar-brand.d-flex.align-items-center.justify-content-center(href='/')
+        .sidebar-brand-icon.rotate-n-15
+            //- i.fas.fa-dumbbell.fa-3x
+        .sidebar-brand-text.mx-3.h3 Gym Admin Dashboard
+
+    // Topbar Navbar
+    ul.navbar-nav.ml-auto
+
+        if user
+            li.nav-item.dropdown.no-arrow
+                a#userDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                    span.mr-2.d-none.d-lg-inline.text-gray-600.small= user.firstName + ' ' + user.lastName
+                    img.img-profile.rounded-circle(src=`/img/users/${user.photo}`)
+                // Dropdown - User Information
+                .dropdown-menu.dropdown-menu-right.shadow.animated--grow-in(aria-labelledby='userDropdown')
+                    a.dropdown-item(href='/profile')
+                        i.fas.fa-user.fa-sm.fa-fw.mr-2.text-gray-400
+                        |                   Profile
+                    a.dropdown-item(href='#' data-toggle='modal' data-target='#logoutModal')
+                        i.fas.fa-sign-out-alt.fa-sm.fa-fw.mr-2.text-gray-400
+                        |                   Logout
+        else
+            li
+                a.btn.btn-light.btn-outline-primary.font-weight-bold.mx-3(href='/login') Sign In
+            li
+                a.btn.btn-light.btn-outline-primary.font-weight-bold(href='/signup') Sign Up

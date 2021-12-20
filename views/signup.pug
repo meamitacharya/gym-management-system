@@ -1,0 +1,59 @@
+extends base
+
+block TopBar
+    include widgets/_topBarNotLogin
+
+    block MainContent
+        .container
+            .card.o-hidden.border-0.shadow-lg.my-4
+                .card-body.p-0
+                    // Nested Row within Card Body
+                    .row
+                        .col-lg-5.d-none.d-lg-block.bg-register-image
+                        .col-lg-7
+                            .p-5
+                                .text-center
+                                    h1.h4.text-gray-900.mb-4 Create an Account!
+                                form.user.signup-form
+                                    .form-group.row
+                                        .col-sm-6.mb-3.mb-sm-0
+                                            input#firstName.form-control.form-control-user.font-weight-bold(type='text' name='firstName' placeholder='First Name')
+                                        .col-sm-6
+                                            input#lastName.form-control.form-control-user.font-weight-bold(type='text' name='lastName' placeholder='Last Name')
+                                    .form-group
+                                        input#email.form-control.form-control-user.font-weight-bold(type='email' name='email' placeholder='Email Address')
+                                    .form-group.row
+                                        .col-sm-6.mb-3.mb-sm-0
+                                            input#password.form-control.form-control-user.font-weight-bold(type='password' name='password' placeholder='Password')
+                                        .col-sm-6
+                                            input#passwordConfirm.form-control.form-control-user.font-weight-bold(type='password' name='passwordConfirm' placeholder='Repeat Password')
+
+                                    .form-group.radioButton
+                                        span.font-weight-bold.mx-3
+                                            | User Type :
+                                        .custom-control.custom-radio.custom-control-inline
+                                            input#member.custom-control-input(type='radio' name='userType' value='member' checked)
+                                            label.custom-control-label(for='member' ) Member
+                                        .custom-control.custom-radio.custom-control-inline
+                                            input#gymOwner.custom-control-input(type='radio' name='userType' value='gym-owner')
+                                            label.custom-control-label(for='gymOwner' ) Gym Owner
+
+                                    button.btn.btn-primary.btn-user.btn-block.signup-button(type='submit')
+                                        | Register Account
+                                    hr
+                                    a.btn.btn-facebook.btn-user.btn-block(href='#')
+                                        i.fab.fa-facebook-f.fa-fw
+                                        |  Register with
+                                        |                     Facebook
+                                hr
+                                .text-center
+                                    a.small(href='/login') Already have an account? Login!
+
+    block footer
+        include widgets/_footer
+
+    script(type ='module' src='/js/signup.js')
+
+
+
+
