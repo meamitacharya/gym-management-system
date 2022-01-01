@@ -22,7 +22,7 @@ const updateProfile = async data => {
     console.log(data);
     const res = await axios({
       method: 'patch',
-      url: `${process.env.PROD_URL}/api/v1/users/updateMe`,
+      url: `https://gms-meamit.herokuapp.com/api/v1/users/updateMe`,
       data
     });
 

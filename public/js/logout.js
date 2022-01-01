@@ -2,7 +2,7 @@ const logout = async () => {
   try {
     const res = await axios({
       method: 'GET',
-      url: `${process.env.PROD_URL}/api/v1/users/logout`
+      url: `https://gms-meamit.herokuapp.com/api/v1/users/logout`
     });
     if (res.data.status === 'sucess') {
       location.reload(true);

@@ -17,7 +17,7 @@ const editGym = async (name, gymLocation, price, summary, gymId, gymSlug) => {
   try {
     const res = await axios({
       method: 'patch',
-      url: `${process.env.PROD_URL}/api/v1/gyms/${gymId}`,
+      url: `https://gms-meamit.herokuapp.com/api/v1/gyms/${gymId}`,
       data: {
         name,
         gymLocation,
@@ -34,6 +34,6 @@ const editGym = async (name, gymLocation, price, summary, gymId, gymSlug) => {
       location.assign(`/gymadmin/gyms/edit/${gymSlug}`);
     }
   } catch (err) {
-    console.log(err.response.data.message);
+    console.log(err.message);
   }
 };

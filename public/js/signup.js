@@ -24,7 +24,7 @@ const signup = async (
   try {
     const res = await axios({
       method: 'post',
-      url: `${process.env.PROD_URL}/api/v1/users/signup`,
+      url: `https://gms-meamit.herokuapp.com/api/v1/users/signup`,
       data: {
         firstName: firstName,
         lastName: lastName,
@@ -43,6 +43,7 @@ const signup = async (
       location.assign('/signup');
     }
   } catch (err) {
-    showAlert('danger', err.response.data.message);
+    console.log(err.message);
+    showAlert('danger', err.message);
   }
 };

@@ -16,7 +16,7 @@ const login = async (email, password) => {
   try {
     const res = await axios({
       method: 'post',
-      url: `${process.env.PROD_URL}/api/v1/users/login`,
+      url: `https://gms-meamit.herokuapp.com/api/v1/users/login`,
       data: {
         email,
         password

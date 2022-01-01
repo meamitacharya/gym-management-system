@@ -15,7 +15,7 @@ const forgotPassword = async email => {
   try {
     const res = await axios({
       method: 'post',
-      url: `${process.env.PROD_URL}/api/v1/users/forgotPassword`,
+      url: `https://gms-meamit.herokuapp.com/api/v1/users/forgotPassword`,
       data: {
         email
       }

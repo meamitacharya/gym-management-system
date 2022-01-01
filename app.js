@@ -6,6 +6,7 @@ const rateLimit = require('express-rate-limit');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 //Initialising express app
 
@@ -21,6 +22,7 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // Global Middlewares
+app.use(cors());
 
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -54,17 +56,17 @@ app.use(xss());
 
 //Routes
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header(
-    'Acess-Control-Allow-Headers',
-    'Origin',
-    'X-Requested-With',
-    'Accept',
-    'Authorization'
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header(
+//     'Acess-Control-Allow-Headers',
+//     'Origin',
+//     'X-Requested-With',
+//     'Accept',
+//     'Authorization'
+//   );
+//   next();
+// });
 
 app.use('/', viewRouter);
 app.use('/api/v1/users', userRouter);

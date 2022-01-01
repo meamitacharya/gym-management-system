@@ -25,7 +25,7 @@ const resetPassword = async (
   try {
     const res = await axios({
       method: 'patch',
-      url: `${process.env.PROD_URL}/api/v1/users/resetPassword`,
+      url: `https://gms-meamit.herokuapp.com/api/v1/users/resetPassword`,
       data: {
         email,
         password,

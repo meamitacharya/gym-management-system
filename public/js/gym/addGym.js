@@ -15,7 +15,7 @@ const addNewGym = async (name, gymLocation, price, summary) => {
   try {
     const res = await axios({
       method: 'post',
-      url: `${process.env.PROD_URL}/api/v1/gyms`,
+      url: `https://gms-meamit.herokuapp.com/api/v1/gyms`,
       data: {
         name,
         gymLocation,
