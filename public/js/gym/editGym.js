@@ -17,7 +17,7 @@ const editGym = async (name, gymLocation, price, summary, gymId, gymSlug) => {
   try {
     const res = await axios({
       method: 'patch',
-      url: `http://localhost:8085/api/v1/gyms/${gymId}`,
+      url: `${process.env.PROD_URL}/api/v1/gyms/${gymId}`,
       data: {
         name,
         gymLocation,

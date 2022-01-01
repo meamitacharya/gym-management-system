@@ -24,7 +24,7 @@ const signup = async (
   try {
     const res = await axios({
       method: 'post',
-      url: 'http://localhost:8085/api/v1/users/signup',
+      url: `${process.env.PROD_URL}/api/v1/users/signup`,
       data: {
         firstName: firstName,
         lastName: lastName,

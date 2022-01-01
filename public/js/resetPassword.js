@@ -25,7 +25,7 @@ const resetPassword = async (
   try {
     const res = await axios({
       method: 'patch',
-      url: 'http://localhost:8085/api/v1/users/resetPassword',
+      url: `${process.env.PROD_URL}/api/v1/users/resetPassword`,
       data: {
         email,
         password,
