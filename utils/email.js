@@ -1,35 +1,41 @@
 const nodemailer = require('nodemailer');
+const { google } = require('googleapis');
+const OAuth2 = google.auth.OAuth2;
+
+const oauth2Client = new OAuth2(
+  process.env.CLIENT_ID,
+  process.env.CLIENT_SECRET,
+  'https://developers.google.com/oauthplayground'
+);
+
+oauth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
+
+const accessToken = oauth2Client.getAccessToken();
+
+let transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  auth: {
+    type: 'OAuth2',
+    user: process.env.EMAIL,
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    refreshToken: process.env.REFRESH_TOKEN,
+    accessToken,
+    expires: 1484314697598
+  }
+});
 
 const sendEmail = async options => {
-  //1) Create Transporter
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    //  host: "smtp.gmail.com",
-    //  port: 587,
-    auth: {
-      user: process.env.EMAIL_USERNAME,
-      pass: process.env.EMAIL_PASSWORD
-    }
-  });
-
-  //2) Define email options
   const mailOptions = {
-    from: 'Amit Acharya <askamit29@gmail.com>',
+    from: 'Amit Acharya <kanxoo975@gmail.com>',
     to: options.email,
     subject: options.subject,
     text: options.message
   };
-  //3) Actualy send the email
-  //   await transporter.sendMail(mailOptions).catch(err => {
-  //     console.log(err.message);
-  //   });
-  transporter.sendMail(mailOptions, function(error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  });
+
+  return await transporter.sendMail(mailOptions);
 };
 
 module.exports = sendEmail;
