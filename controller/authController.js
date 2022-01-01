@@ -43,7 +43,7 @@ const sendmail = async (user, message, next) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
-  const newUser = await User.create({
+  const newUser = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
@@ -67,12 +67,12 @@ exports.signup = catchAsync(async (req, res, next) => {
   await sendmail(newUser, message, next);
 
   // newUser.password = undefined;
-  res.status(201).json({
-    status: 'sucess',
-    data: {
-      user: newUser
-    }
-  });
+  res
+    .status(201)
+    .json({
+      status: 'sucess'
+    })
+    .end();
 });
 
 exports.activate = catchAsync(async (req, res, next) => {
