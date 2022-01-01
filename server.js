@@ -3,11 +3,13 @@ dotenv.config({ path: './config.env' });
 const mongoose = require('mongoose');
 const app = require('./app');
 
+const AppError = require('./utils/appError');
+
+
 process.on('uncaughtException', err => {
   console.log(err.name, err.message);
   process.exit(1);
 });
-
 
 const DB = process.env.DATABASE;
 
@@ -22,6 +24,11 @@ mongoose
     console.log('Database connected sucessfully...');
   });
 
+//Handling unhandled routes
+app.all('*', (req, res, next) => {
+  next(new AppError(`Could not find ${req.originalUrl} on this server.`, 404));
+  res.status(404).send(`Could not find ${req.originalUrl} on this server.`)
+});
 //Server
 const port = process.env.PORT || 3001;
 
