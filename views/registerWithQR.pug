@@ -1,0 +1,40 @@
+extends base
+
+block TopBar
+   include widgets/_topBarNotLogin
+
+   block MainContent
+      .container
+         // Outer Row
+         .row.justify-content-center
+            .col-xl-10.col-lg-12.col-md-9
+               .card.o-hidden.border-0.shadow-lg.my-5
+                  .card-body.p-0
+                     // Nested Row within Card Body
+                     .row
+                        .col-lg-6.d-none.d-lg-block.bg-login-image
+                        .col-lg-6
+                           .p-5
+                              .text-center
+                                 h1.h4.text-gray-900.mb-4 Register with Us
+                              form.user.signup-form
+                                 .form-group
+                                    input.form-control.form-control-user(type='email' name='email' id="email" aria-describedby='emailHelp' placeholder='Enter Email Address...')
+                                 .form-group
+                                    input.form-control.form-control-user(type='text' name='fullName' id="fullName" placeholder='Full Name')
+                                 .form-group
+                                    button.btn.btn-primary.btn-user.btn-block.signup-button(type='submit')
+                                       | Register
+
+                                 hr
+                                 .text-center
+                                    a.small(href='/login') Already have an account? Login!
+
+
+
+   block footer
+      include widgets/_footer
+
+   script(type='module' src='/js/signupWithQR.js')
+//- script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
+
